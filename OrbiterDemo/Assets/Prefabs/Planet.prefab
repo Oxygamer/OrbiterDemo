@@ -212,6 +212,8 @@ MonoBehaviour:
   EnemyCircle: {fileID: 1775898598439262}
   OwnerType: 0
   Type: 0
+  GasPlanetColor1: {r: 0.117647044, g: 0.99215686, b: 0.3210928, a: 1}
+  GasPlanetColor2: {r: 0.44064695, g: 0.023529403, b: 0.67058825, a: 1}
 --- !u!135 &135771281910227346
 SphereCollider:
   m_ObjectHideFlags: 1

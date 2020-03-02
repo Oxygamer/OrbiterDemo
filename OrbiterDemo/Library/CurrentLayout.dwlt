@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 421}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_MinSize: {x: 613, y: 371}
   m_MaxSize: {x: 18008, y: 14021}
   vertical: 1
-  controlID: 98
+  controlID: 9
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 613, y: 371}
   m_MaxSize: {x: 18008, y: 14021}
   vertical: 0
-  controlID: 99
+  controlID: 10
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -160,7 +160,7 @@ MonoBehaviour:
   - {fileID: 13}
   - {fileID: 12}
   m_Selected: 1
-  m_LastSelected: 0
+  m_LastSelected: 2
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_MinSize: {x: 234, y: 371}
   m_MaxSize: {x: 10004, y: 14021}
   vertical: 1
-  controlID: 38
+  controlID: 56
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -202,7 +202,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 234
-    height: 367
+    height: 323
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
@@ -225,9 +225,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 367
+    y: 323
     width: 234
-    height: 503
+    height: 547
   m_MinSize: {x: 234, y: 271}
   m_MaxSize: {x: 10004, y: 10021}
   m_ActualView: {fileID: 16}
@@ -284,85 +284,130 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 92
-    width: 1378
+    width: 1380
     height: 926
   m_PersistentViewDataDictionary: {fileID: 0}
   shaderEvaluator:
     editor: {fileID: 12}
     cNodes:
     - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     ghostNodes: []
     scope: 0
-    shaderString: "Shader \"Shader Forge/HealthBar\" {\n    Properties {\n        [PerRendererData]_MainTex
-      (\"MainTex\", 2D) = \"white\" {}\n        _Color (\"Color\", Color) = (1,1,1,1)\n
-      \       _Fill (\"Fill\", Float ) = 1\n        [HideInInspector]_Cutoff (\"Alpha
-      cutoff\", Range(0,1)) = 0.5\n        [MaterialToggle] PixelSnap (\"Pixel snap\",
-      Float) = 0\n        _Stencil (\"Stencil ID\", Float) = 0\n        _StencilReadMask
-      (\"Stencil Read Mask\", Float) = 255\n        _StencilWriteMask (\"Stencil Write
-      Mask\", Float) = 255\n        _StencilComp (\"Stencil Comparison\", Float) =
-      8\n        _StencilOp (\"Stencil Operation\", Float) = 0\n        _StencilOpFail
-      (\"Stencil Fail Operation\", Float) = 0\n        _StencilOpZFail (\"Stencil
-      Z-Fail Operation\", Float) = 0\n    }\n    SubShader {\n        Tags {\n            \"IgnoreProjector\"=\"True\"\n
-      \           \"Queue\"=\"Transparent\"\n            \"RenderType\"=\"Transparent\"\n
-      \           \"CanUseSpriteAtlas\"=\"True\"\n            \"PreviewType\"=\"Plane\"\n
-      \       }\n        Pass {\n            Name \"FORWARD\"\n            Tags {\n
-      \               \"LightMode\"=\"ForwardBase\"\n            }\n            Blend
-      SrcAlpha OneMinusSrcAlpha\n            Cull Off\n            ZWrite Off\n            \n
-      \           Stencil {\n                Ref [_Stencil]\n                ReadMask
-      [_StencilReadMask]\n                WriteMask [_StencilWriteMask]\n                Comp
-      [_StencilComp]\n                Pass [_StencilOp]\n                Fail [_StencilOpFail]\n
-      \               ZFail [_StencilOpZFail]\n            }\n            CGPROGRAM\n
-      \           #pragma vertex vert\n            #pragma fragment frag\n            #define
-      UNITY_PASS_FORWARDBASE\n            #pragma multi_compile _ PIXELSNAP_ON\n            #include
-      \"UnityCG.cginc\"\n            #pragma multi_compile_fwdbase\n            #pragma
-      only_renderers d3d9 d3d11 glcore gles \n            #pragma target 3.0\n            uniform
-      sampler2D _MainTex; uniform float4 _MainTex_ST;\n            uniform float4
-      _Color;\n            uniform float _Fill;\n            float CalculateFill(
-      float X , float Fill ){\n            if(X<Fill)\n            {\n            return
-      1;\n            }else{\n            return 0;\n            }\n            }\n
-      \           \n            struct VertexInput {\n                float4 vertex
-      : POSITION;\n                float2 texcoord0 : TEXCOORD0;\n                float4
-      vertexColor : COLOR;\n            };\n            struct VertexOutput {\n                float4
-      pos : SV_POSITION;\n                float2 uv0 : TEXCOORD0;\n                float4
-      vertexColor : COLOR;\n            };\n            VertexOutput vert (VertexInput
-      v) {\n                VertexOutput o = (VertexOutput)0;\n                o.uv0
-      = v.texcoord0;\n                o.vertexColor = v.vertexColor;\n                o.pos
-      = UnityObjectToClipPos( v.vertex );\n                #ifdef PIXELSNAP_ON\n                    o.pos
-      = UnityPixelSnap(o.pos);\n                #endif\n                return o;\n
-      \           }\n            float4 frag(VertexOutput i, float facing : VFACE)
-      : COLOR {\n                float isFrontFace = ( facing >= 0 ? 1 : 0 );\n                float
-      faceSign = ( facing >= 0 ? 1 : -1 );\n////// Lighting:\n////// Emissive:\n                float4
-      _MainTex_var = tex2D(_MainTex,TRANSFORM_TEX(i.uv0, _MainTex));\n                float
-      node_603 = (_MainTex_var.a*_Color.a*i.vertexColor.a); // A\n                float3
-      emissive = ((_MainTex_var.rgb*_Color.rgb*i.vertexColor.rgb)*node_603);\n                float3
-      finalColor = emissive;\n                return fixed4(finalColor,(node_603*CalculateFill(
-      i.uv0.r , _Fill )));\n            }\n            ENDCG\n        }\n        Pass
-      {\n            Name \"ShadowCaster\"\n            Tags {\n                \"LightMode\"=\"ShadowCaster\"\n
-      \           }\n            Offset 1, 1\n            Cull Off\n            \n
-      \           CGPROGRAM\n            #pragma vertex vert\n            #pragma
-      fragment frag\n            #define UNITY_PASS_SHADOWCASTER\n            #pragma
-      multi_compile _ PIXELSNAP_ON\n            #include \"UnityCG.cginc\"\n            #include
-      \"Lighting.cginc\"\n            #pragma fragmentoption ARB_precision_hint_fastest\n
-      \           #pragma multi_compile_shadowcaster\n            #pragma only_renderers
-      d3d9 d3d11 glcore gles \n            #pragma target 3.0\n            struct
-      VertexInput {\n                float4 vertex : POSITION;\n            };\n            struct
-      VertexOutput {\n                V2F_SHADOW_CASTER;\n            };\n            VertexOutput
-      vert (VertexInput v) {\n                VertexOutput o = (VertexOutput)0;\n
-      \               o.pos = UnityObjectToClipPos( v.vertex );\n                #ifdef
-      PIXELSNAP_ON\n                    o.pos = UnityPixelSnap(o.pos);\n                #endif\n
-      \               TRANSFER_SHADOW_CASTER(o)\n                return o;\n            }\n
-      \           float4 frag(VertexOutput i, float facing : VFACE) : COLOR {\n                float
-      isFrontFace = ( facing >= 0 ? 1 : 0 );\n                float faceSign = ( facing
-      >= 0 ? 1 : -1 );\n                SHADOW_CASTER_FRAGMENT(i)\n            }\n
-      \           ENDCG\n        }\n    }\n    FallBack \"Diffuse\"\n    CustomEditor
-      \"ShaderForgeMaterialInspector\"\n}\n"
+    shaderString: "Shader \"Shader Forge/GasPlanet\" {\n    Properties {\n        _Color
+      (\"Color\", Color) = (1,1,1,1)\n        _EmissionColor (\"EmissionColor\", Color)
+      = (0.5,0.5,0.5,1)\n        _Intensity (\"Intensity\", Float ) = 1\n        _MainTexture
+      (\"MainTexture\", 2D) = \"white\" {}\n        _EmissionTexture (\"EmissionTexture\",
+      2D) = \"white\" {}\n        _CloudsTex (\"CloudsTex\", 2D) = \"white\" {}\n
+      \       _Speed (\"Speed\", Float ) = 0.5\n    }\n    SubShader {\n        Tags
+      {\n            \"RenderType\"=\"Opaque\"\n        }\n        Pass {\n            Name
+      \"FORWARD\"\n            Tags {\n                \"LightMode\"=\"ForwardBase\"\n
+      \           }\n            \n            \n            CGPROGRAM\n            #pragma
+      vertex vert\n            #pragma fragment frag\n            #define UNITY_PASS_FORWARDBASE\n
+      \           #include \"UnityCG.cginc\"\n            #include \"AutoLight.cginc\"\n
+      \           #pragma multi_compile_fwdbase_fullshadows\n            #pragma multi_compile_fog\n
+      \           #pragma only_renderers d3d9 d3d11 glcore gles \n            #pragma
+      target 3.0\n            uniform float4 _LightColor0;\n            uniform float4
+      _Color;\n            uniform float4 _EmissionColor;\n            uniform float
+      _Intensity;\n            uniform sampler2D _MainTexture; uniform float4 _MainTexture_ST;\n
+      \           uniform sampler2D _EmissionTexture; uniform float4 _EmissionTexture_ST;\n
+      \           uniform sampler2D _CloudsTex; uniform float4 _CloudsTex_ST;\n            float2
+      UVShift( float2 UV , float T , float S ){\n            float2 resultUV=float2(UV.x+T*S,UV.y);\n
+      \           return resultUV;\n            }\n            \n            uniform
+      float _Speed;\n            struct VertexInput {\n                float4 vertex
+      : POSITION;\n                float3 normal : NORMAL;\n                float2
+      texcoord0 : TEXCOORD0;\n            };\n            struct VertexOutput {\n
+      \               float4 pos : SV_POSITION;\n                float2 uv0 : TEXCOORD0;\n
+      \               float4 posWorld : TEXCOORD1;\n                float3 normalDir
+      : TEXCOORD2;\n                LIGHTING_COORDS(3,4)\n                UNITY_FOG_COORDS(5)\n
+      \           };\n            VertexOutput vert (VertexInput v) {\n                VertexOutput
+      o = (VertexOutput)0;\n                o.uv0 = v.texcoord0;\n                o.normalDir
+      = UnityObjectToWorldNormal(v.normal);\n                o.posWorld = mul(unity_ObjectToWorld,
+      v.vertex);\n                float3 lightColor = _LightColor0.rgb;\n                o.pos
+      = UnityObjectToClipPos( v.vertex );\n                UNITY_TRANSFER_FOG(o,o.pos);\n
+      \               TRANSFER_VERTEX_TO_FRAGMENT(o)\n                return o;\n
+      \           }\n            float4 frag(VertexOutput i) : COLOR {\n                i.normalDir
+      = normalize(i.normalDir);\n                float3 normalDirection = i.normalDir;\n
+      \               float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz);\n
+      \               float3 lightColor = _LightColor0.rgb;\n////// Lighting:\n                float
+      attenuation = LIGHT_ATTENUATION(i);\n                float3 attenColor = attenuation
+      * _LightColor0.xyz;\n/////// Diffuse:\n                float NdotL = max(0.0,dot(
+      normalDirection, lightDirection ));\n                float3 directDiffuse =
+      max( 0.0, NdotL) * attenColor;\n                float3 indirectDiffuse = float3(0,0,0);\n
+      \               indirectDiffuse += UNITY_LIGHTMODEL_AMBIENT.rgb; // Ambient
+      Light\n                float4 _MainTexture_var = tex2D(_MainTexture,TRANSFORM_TEX(i.uv0,
+      _MainTexture));\n                float3 diffuseColor = (_Color.rgb*_MainTexture_var.rgb);\n
+      \               float3 diffuse = (directDiffuse + indirectDiffuse) * diffuseColor;\n//////
+      Emissive:\n                float4 _EmissionTexture_var = tex2D(_EmissionTexture,TRANSFORM_TEX(i.uv0,
+      _EmissionTexture));\n                float4 node_3974 = _Time;\n                float2
+      node_2692 = UVShift( i.uv0 , node_3974.g , _Speed );\n                float4
+      _CloudsTex_var = tex2D(_CloudsTex,TRANSFORM_TEX(node_2692, _CloudsTex));\n                float3
+      emissive = saturate(( _CloudsTex_var.rgb > 0.5 ? (1.0-(1.0-2.0*(_CloudsTex_var.rgb-0.5))*(1.0-(_EmissionColor.rgb*_Intensity*_EmissionTexture_var.rgb)))
+      : (2.0*_CloudsTex_var.rgb*(_EmissionColor.rgb*_Intensity*_EmissionTexture_var.rgb))
+      ));\n/// Final Color:\n                float3 finalColor = diffuse + emissive;\n
+      \               fixed4 finalRGBA = fixed4(finalColor,1);\n                UNITY_APPLY_FOG(i.fogCoord,
+      finalRGBA);\n                return finalRGBA;\n            }\n            ENDCG\n
+      \       }\n        Pass {\n            Name \"FORWARD_DELTA\"\n            Tags
+      {\n                \"LightMode\"=\"ForwardAdd\"\n            }\n            Blend
+      One One\n            \n            \n            CGPROGRAM\n            #pragma
+      vertex vert\n            #pragma fragment frag\n            #define UNITY_PASS_FORWARDADD\n
+      \           #include \"UnityCG.cginc\"\n            #include \"AutoLight.cginc\"\n
+      \           #pragma multi_compile_fwdadd_fullshadows\n            #pragma multi_compile_fog\n
+      \           #pragma only_renderers d3d9 d3d11 glcore gles \n            #pragma
+      target 3.0\n            uniform float4 _LightColor0;\n            uniform float4
+      _Color;\n            uniform float4 _EmissionColor;\n            uniform float
+      _Intensity;\n            uniform sampler2D _MainTexture; uniform float4 _MainTexture_ST;\n
+      \           uniform sampler2D _EmissionTexture; uniform float4 _EmissionTexture_ST;\n
+      \           uniform sampler2D _CloudsTex; uniform float4 _CloudsTex_ST;\n            float2
+      UVShift( float2 UV , float T , float S ){\n            float2 resultUV=float2(UV.x+T*S,UV.y);\n
+      \           return resultUV;\n            }\n            \n            uniform
+      float _Speed;\n            struct VertexInput {\n                float4 vertex
+      : POSITION;\n                float3 normal : NORMAL;\n                float2
+      texcoord0 : TEXCOORD0;\n            };\n            struct VertexOutput {\n
+      \               float4 pos : SV_POSITION;\n                float2 uv0 : TEXCOORD0;\n
+      \               float4 posWorld : TEXCOORD1;\n                float3 normalDir
+      : TEXCOORD2;\n                LIGHTING_COORDS(3,4)\n                UNITY_FOG_COORDS(5)\n
+      \           };\n            VertexOutput vert (VertexInput v) {\n                VertexOutput
+      o = (VertexOutput)0;\n                o.uv0 = v.texcoord0;\n                o.normalDir
+      = UnityObjectToWorldNormal(v.normal);\n                o.posWorld = mul(unity_ObjectToWorld,
+      v.vertex);\n                float3 lightColor = _LightColor0.rgb;\n                o.pos
+      = UnityObjectToClipPos( v.vertex );\n                UNITY_TRANSFER_FOG(o,o.pos);\n
+      \               TRANSFER_VERTEX_TO_FRAGMENT(o)\n                return o;\n
+      \           }\n            float4 frag(VertexOutput i) : COLOR {\n                i.normalDir
+      = normalize(i.normalDir);\n                float3 normalDirection = i.normalDir;\n
+      \               float3 lightDirection = normalize(lerp(_WorldSpaceLightPos0.xyz,
+      _WorldSpaceLightPos0.xyz - i.posWorld.xyz,_WorldSpaceLightPos0.w));\n                float3
+      lightColor = _LightColor0.rgb;\n////// Lighting:\n                float attenuation
+      = LIGHT_ATTENUATION(i);\n                float3 attenColor = attenuation * _LightColor0.xyz;\n///////
+      Diffuse:\n                float NdotL = max(0.0,dot( normalDirection, lightDirection
+      ));\n                float3 directDiffuse = max( 0.0, NdotL) * attenColor;\n
+      \               float4 _MainTexture_var = tex2D(_MainTexture,TRANSFORM_TEX(i.uv0,
+      _MainTexture));\n                float3 diffuseColor = (_Color.rgb*_MainTexture_var.rgb);\n
+      \               float3 diffuse = directDiffuse * diffuseColor;\n/// Final Color:\n
+      \               float3 finalColor = diffuse;\n                fixed4 finalRGBA
+      = fixed4(finalColor * 1,0);\n                UNITY_APPLY_FOG(i.fogCoord, finalRGBA);\n
+      \               return finalRGBA;\n            }\n            ENDCG\n        }\n
+      \   }\n    FallBack \"Diffuse\"\n    CustomEditor \"ShaderForgeMaterialInspector\"\n}\n"
     ps: {fileID: 0}
     properties: {fileID: 0}
     mOut: {fileID: 0}
   preview:
     editor: {fileID: 12}
     settings:
-      previewAutoRotate: 1
+      previewAutoRotate: 0
       colorBg: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     mesh: {fileID: 4300024, guid: 27cd3ffabf618924f9c9eeefb09b60e0, type: 3}
     internalMaterial: {fileID: 0}
@@ -382,7 +427,8 @@ MonoBehaviour:
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
       m_Focused:
-        m_Background: {fileID: 0}
+        m_Background: {fileID: -6925230156380230527, guid: 0000000000000000d000000000000000,
+          type: 0}
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
       m_OnNormal:
@@ -436,10 +482,10 @@ MonoBehaviour:
       m_StretchHeight: 0
     backgroundTexture: {fileID: 0}
     isDraggingLMB: 0
-    dragStartPosLMB: {x: 0, y: 0}
-    rotMeshStart: {x: -30, y: 0}
-    rotMesh: {x: 30, y: -3163.7375}
-    rotMeshSmooth: {x: 30, y: -3163.2876}
+    dragStartPosLMB: {x: 255, y: 173}
+    rotMeshStart: {x: 30, y: -1017.91943}
+    rotMesh: {x: 37.2, y: -1037.1194}
+    rotMeshSmooth: {x: 37.199997, y: -1037.1194}
     isDraggingRMB: 0
     cam: {fileID: 0}
     camPivot: {fileID: 0}
@@ -453,8 +499,8 @@ MonoBehaviour:
       y: 43
       width: 320
       height: 320
-    targetFOV: 30
-    smoothFOV: 30
+    targetFOV: 34
+    smoothFOV: 34
   nodeView: {fileID: 0}
   nodeBrowser: {fileID: 0}
   ps: {fileID: 0}
@@ -485,11 +531,13 @@ MonoBehaviour:
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.705, g: 0.705, b: 0.705, a: 1}
       m_Active:
-        m_Background: {fileID: 0}
+        m_Background: {fileID: 3696117970163896625, guid: 0000000000000000d000000000000000,
+          type: 0}
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.2985075, g: 0.4923412, b: 1, a: 1}
       m_Focused:
-        m_Background: {fileID: 0}
+        m_Background: {fileID: 3696117970163896625, guid: 0000000000000000d000000000000000,
+          type: 0}
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.2985075, g: 0.4923412, b: 1, a: 1}
       m_OnNormal:
@@ -501,11 +549,13 @@ MonoBehaviour:
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.705, g: 0.705, b: 0.705, a: 1}
       m_OnActive:
-        m_Background: {fileID: 0}
+        m_Background: {fileID: 3696117970163896625, guid: 0000000000000000d000000000000000,
+          type: 0}
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.2985075, g: 0.4923412, b: 1, a: 1}
       m_OnFocused:
-        m_Background: {fileID: 0}
+        m_Background: {fileID: 3696117970163896625, guid: 0000000000000000d000000000000000,
+          type: 0}
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.2985075, g: 0.4923412, b: 1, a: 1}
       m_Border:
@@ -552,11 +602,13 @@ MonoBehaviour:
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.705, g: 0.705, b: 0.705, a: 1}
       m_Active:
-        m_Background: {fileID: 0}
+        m_Background: {fileID: 3696117970163896625, guid: 0000000000000000d000000000000000,
+          type: 0}
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.2985075, g: 0.4923412, b: 1, a: 1}
       m_Focused:
-        m_Background: {fileID: 0}
+        m_Background: {fileID: 3696117970163896625, guid: 0000000000000000d000000000000000,
+          type: 0}
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.2985075, g: 0.4923412, b: 1, a: 1}
       m_OnNormal:
@@ -568,11 +620,13 @@ MonoBehaviour:
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.705, g: 0.705, b: 0.705, a: 1}
       m_OnActive:
-        m_Background: {fileID: 0}
+        m_Background: {fileID: 3696117970163896625, guid: 0000000000000000d000000000000000,
+          type: 0}
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.2985075, g: 0.4923412, b: 1, a: 1}
       m_OnFocused:
-        m_Background: {fileID: 0}
+        m_Background: {fileID: 3696117970163896625, guid: 0000000000000000d000000000000000,
+          type: 0}
         m_ScaledBackgrounds: []
         m_TextColor: {r: 0.2985075, g: 0.4923412, b: 1, a: 1}
       m_Border:
@@ -678,7 +732,8 @@ MonoBehaviour:
     headerStyle:
       m_Name: Toolbar
       m_Normal:
-        m_Background: {fileID: 0}
+        m_Background: {fileID: -1997011816300963927, guid: 0000000000000000d000000000000000,
+          type: 0}
         m_ScaledBackgrounds: []
         m_TextColor: {r: 1, g: 1, b: 1, a: 1}
       m_Hover:
@@ -729,7 +784,8 @@ MonoBehaviour:
         m_Right: 0
         m_Top: 0
         m_Bottom: 0
-      m_Font: {fileID: 0}
+      m_Font: {fileID: 3021071571035331536, guid: 0000000000000000d000000000000000,
+        type: 0}
       m_FontSize: 10
       m_FontStyle: 0
       m_Alignment: 3
@@ -754,10 +810,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   windowStyle:
     m_Name: textfield
     m_Normal:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 4072351054032163450, guid: 0000000000000000d000000000000000,
+        type: 0}
       m_ScaledBackgrounds: []
       m_TextColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
     m_Hover:
@@ -769,7 +829,8 @@ MonoBehaviour:
       m_ScaledBackgrounds: []
       m_TextColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
     m_Focused:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: -6925230156380230527, guid: 0000000000000000d000000000000000,
+        type: 0}
       m_ScaledBackgrounds: []
       m_TextColor: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
     m_OnNormal:
@@ -875,7 +936,8 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 0}
+    m_Font: {fileID: -2914059783256359354, guid: 0000000000000000d000000000000000,
+      type: 0}
     m_FontSize: 24
     m_FontStyle: 0
     m_Alignment: 0
@@ -942,7 +1004,8 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 0}
+    m_Font: {fileID: -9142270697591305147, guid: 0000000000000000d000000000000000,
+      type: 0}
     m_FontSize: 9
     m_FontStyle: 0
     m_Alignment: 3
@@ -1024,9 +1087,9 @@ MonoBehaviour:
     m_StretchHeight: 0
   separatorLeft: {fileID: 0}
   separatorRight: {fileID: 0}
-  mousePosition: {x: 140, y: -8}
-  currentShaderAsset: {fileID: 4800000, guid: 3a1c98956e67ad341b5d422e99c94f3e, type: 3}
-  currentShaderPath: Shader Forge/HealthBar
+  mousePosition: {x: 132, y: -7}
+  currentShaderAsset: {fileID: 4800000, guid: d3d2307ded883014e89d70d2a4cd018d, type: 3}
+  currentShaderPath: Shader Forge/GasPlanet
   nodeTemplates:
   - {fileID: 0}
   - {fileID: 0}
@@ -1151,13 +1214,13 @@ MonoBehaviour:
   - {fileID: 0}
   shaderOutdated: 0
   deltaTime: 0.02
-  dockedLastUpdate: 4607.554
+  dockedLastUpdate: 1613.7786
   _docked: 1
   previousPosition:
     serializedVersion: 2
     x: 0
     y: 92
-    width: 1378
+    width: 1380
     height: 926
   closeMe: 0
   screenshotInProgress: 0
@@ -1398,13 +1461,13 @@ MonoBehaviour:
     x: 1403
     y: 161
     width: 230
-    height: 346
+    height: 302
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: e4fbffff00000000
+    m_ExpandedIDs: 64fdfeffe4fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1449,9 +1512,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 1403
-    y: 528
+    y: 484
     width: 230
-    height: 482
+    height: 526
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -1465,7 +1528,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Materials/PlanetGas
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
@@ -1477,7 +1540,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 46530000
     m_LastClickedID: 21318
-    m_ExpandedIDs: 000000005c0d0000200e0000320f0000e80f000062100000c2120000a2130000
+    m_ExpandedIDs: 00000000600d00004e0f0000860f0000f00f00006a100000cc120000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1502,10 +1565,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 56}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff000000005c0d0000480f00007e0f0000e80f000062100000c2120000
+    m_ExpandedIDs: ffffffff00000000600d0000580e00004e0f0000f00f0000cc120000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1707,7 +1770,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewResizer:
-    m_CachedPref: 144
+    m_CachedPref: 250
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}

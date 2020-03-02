@@ -18,6 +18,9 @@ public class PlanetBehavior : MonoBehaviour {
     public PlanetOwnerType OwnerType;
     public PlanetType Type;
 
+    public Color GasPlanetColor1;
+    public Color GasPlanetColor2;
+
     float currentAngle = 0f;
     float orbitalSpeed = 1f;
     float initialForce = 2f;
@@ -34,6 +37,7 @@ public class PlanetBehavior : MonoBehaviour {
 
     float minPlanetSpeed = 0.2f;
     float maxPlanetSpeed = 1f;
+
 
     float planetDensity = 15f;
 
@@ -111,11 +115,14 @@ public class PlanetBehavior : MonoBehaviour {
         {
             size = Random.Range(solidPlanetScaleMin, solidPlanetScaleMax);
             transform.localScale = new Vector3(size, size, size);
+          
         }
         else
         {
+            //Gas planet
             size = Random.Range(gasPlanetScaleMin, gasPlanetScaleMax);
             transform.localScale = new Vector3(size, size, size);
+
         }
 
         Mass = size*planetDensity;
@@ -166,6 +173,13 @@ public class PlanetBehavior : MonoBehaviour {
         }else if(type==PlanetType.Gas)
         {
             PlanetModel.GetComponent<MeshRenderer>().material = GasPlanetMat;
+            //set random color
+            Color c = Color.Lerp(GasPlanetColor1, GasPlanetColor2, Random.value);
+
+            float intensity = Random.Range(1f, 1.5f);
+
+            PlanetModel.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", c);
+            PlanetModel.GetComponent<MeshRenderer>().material.SetFloat("_Intensity", intensity);
         }
         else
         {

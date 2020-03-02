@@ -173,6 +173,7 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
     <None Include="Assets\3dParty\ShaderForge\Example Assets\Shaders\Tiles.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.shader" />
+    <None Include="Assets\Materials\PlanetGas\GasPlanet.shader" />
     <None Include="Assets\3dParty\ShaderForge\Example Assets\Shaders\PixelRotator.shader" />
     <None Include="Assets\3dParty\ShaderForge\Example Assets\Shaders\CustomLighting.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
